@@ -74,10 +74,11 @@ public class FileReadXML implements FileReader {
             if(node.getNodeType()==Node.ELEMENT_NODE)
             {
                 Element element = (Element) node;
-                kol.add(new Currency(element.getElementsByTagName("kod_waluty").item(0).getTextContent(),
+                kol.add(
+                        new Currency(element.getElementsByTagName("kod_waluty").item(0).getTextContent(),
                         element.getElementsByTagName("nazwa_waluty").item(0).getTextContent(),
                         Integer.parseInt(element.getElementsByTagName("przelicznik").item(0).getTextContent()),
-                        Double.parseDouble(element.getElementsByTagName("kod_waluty").item(0).getTextContent())));
+                        Double.parseDouble(element.getElementsByTagName("kurs_sredni").item(0).getTextContent().replaceAll(",", "."))));
 
 
             }
@@ -85,5 +86,7 @@ public class FileReadXML implements FileReader {
         }
 
         return cColl;
+
+
     }
 }

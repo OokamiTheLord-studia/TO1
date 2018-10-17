@@ -1,10 +1,11 @@
 package tk.arktech;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 public class CurrencyCollection {
-    private List<Currency> kolekcja;
+    private ArrayList<Currency> kolekcja = new ArrayList<Currency>();
 
     public List<Currency> getKolekcja() {
         return kolekcja;
@@ -12,6 +13,8 @@ public class CurrencyCollection {
 
     public Currency getByCode(String kod_waluty)
     {
+
+
         Iterator<Currency> iterator = kolekcja.iterator();
         while(iterator.hasNext())
         {

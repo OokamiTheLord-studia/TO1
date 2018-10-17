@@ -44,4 +44,9 @@ public class Currency {
     public void setSredni_kurs(double sredni_kurs) {
         this.sredni_kurs = sredni_kurs;
     }
+
+    @Override
+    public String toString() {
+        return nazwa;
+    }
 }

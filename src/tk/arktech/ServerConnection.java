@@ -15,8 +15,12 @@ public class ServerConnection {
     private String filepath;
 
 
-    public ServerConnection(URL adres, String filepath) {
-        this.adres = adres;
+    public ServerConnection(String adres, String filepath) {
+        try {
+            this.adres = new URL(adres);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
         this.filepath = filepath;
     }
 

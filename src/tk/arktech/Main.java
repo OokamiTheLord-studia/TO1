@@ -11,6 +11,9 @@ public class Main {
         System.out.println(c.getSredni_kurs());*/
 
 
+        View.display(new Calculator(new FileReadXML(new ServerConnection("http://www.nbp.pl/kursy/xml/lasta.xml", "lista.xml")).readAsCurrencyCollection()));
+
+
 
     }
 }

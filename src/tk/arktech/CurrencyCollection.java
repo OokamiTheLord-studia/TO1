@@ -1,5 +1,6 @@
 package tk.arktech;
 
+import java.util.Iterator;
 import java.util.List;
 
 public class CurrencyCollection {
@@ -11,11 +12,17 @@ public class CurrencyCollection {
 
     public Currency getByCode(String kod_waluty)
     {
-
-
+        Iterator<Currency> iterator = kolekcja.iterator();
+        while(iterator.hasNext())
+        {
+            Currency currency = iterator.next();
+            if(currency.getKod_waluty().equals(kod_waluty))
+            {
+                return currency;
+            }
+        }
         return null;
     }
 
 
-    // TODO Skończyć klasę
 }

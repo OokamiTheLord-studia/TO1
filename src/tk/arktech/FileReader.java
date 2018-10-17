@@ -1,4 +1,5 @@
 package tk.arktech;
 
-public class FileReader {
+public interface FileReader {
+    CurrencyCollection readAsCurrencyCollection();
 }

@@ -3,6 +3,11 @@ package tk.arktech;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.Iterator;
 
 public class View {
@@ -12,11 +17,19 @@ public class View {
     private JButton konwertujButton;
     private JLabel kwotaWynikowaLabel;
     private JComboBox<Currency> toComboBox;
+     private DecimalFormat df;
 
     private Calculator calc;
 
     public View(Calculator calc) {
         this.calc = calc;
+
+        df = new DecimalFormat("#.##");
+        df.setRoundingMode(RoundingMode.DOWN);
+
+
+        kwotaTextField.setInputVerifier(new NumberValidator());
+
 
         //fromComboBox = new JComboBox<Currency>();
         Iterator<Currency> iterator = calc.getKolekcja().getKolekcja().iterator();
@@ -28,11 +41,17 @@ public class View {
         konwertujButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                kwotaWynikowaLabel.setText(Double.toString(calc.GetResult(Integer.parseInt(kwotaTextField.getText()),
-                        ((Currency) fromComboBox.getSelectedItem()).getKod_waluty(),
-                        ((Currency) toComboBox.getSelectedItem()).getKod_waluty())));
+                if(kwotaTextField.isValid()) {
+
+
+                    kwotaWynikowaLabel.setText(df.format((calc.GetResult( Double.parseDouble(kwotaTextField.getText()),
+                            ((Currency) fromComboBox.getSelectedItem()).getKod_waluty(),
+                            ((Currency) toComboBox.getSelectedItem()).getKod_waluty()))).replaceAll(",", "."));
+                }
             }
         });
+
+
     }
 
 
